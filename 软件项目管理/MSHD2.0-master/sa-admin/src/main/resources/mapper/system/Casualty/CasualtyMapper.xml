@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.lab1024.sa.admin.module.system.CasualtyInfo.dao.CasualtyDao">
+
+    <select id="queryCasualty" resultType="net.lab1024.sa.admin.module.system.CasualtyInfo.domain.vo.CasualtyVO">
+            SELECT
+            t_casualty.*,
+            FROM t_casualty
+        <where>
+            <if test="queryForm.keyword != null and queryForm.keyword != ''">
+            AND (
+            INSTR(t_casualty.ID,#{queryForm.keyword})
+            OR INSTR(t_casualty.location,#{queryForm.keyword})
+            OR INSTR(t_casualty.label,#{queryForm.keyword})
+            )
+            </if>
+            <if test="queryForm.deletedFlag != null">
+                AND t_casualty.deleted_flag = #{queryForm.deletedFlag}
+            </if>
+        </where>
+    ></select>
+
+    <select id="getByLocation" resultType="net.lab1024.sa.admin.module.system.CasualtyInfo.domain.entity.CasualtyEntity">
+        SELECT *
+        FROM t_casualty
+        <where>
+            location = #{Location}
+        </where>
+    </select>
+
+    <select id="getByLabel" resultType="net.lab1024.sa.admin.module.system.CasualtyInfo.domain.entity.CasualtyEntity">
+        SELECT *
+        FROM t_casualty
+        <where>
+            label = #{Label}
+        </where>
+    </select>
+
+
+    <select id="getByNumber" resultType="net.lab1024.sa.admin.module.system.CasualtyInfo.domain.entity.CasualtyEntity">
+        SELECT *
+        FROM t_casualty
+        <where>
+            number = #{Number}
+        </where>
+    </select>
+
+
+    <select id="listAll" resultType="net.lab1024.sa.admin.module.system.CasualtyInfo.domain.vo.CasualtyVO">
+        SELECT *
+        FROM t_casualty
+        ORDER BY create_time DESC
+    </select>
+
+    <select id="getCasualtyById" resultType="net.lab1024.sa.admin.module.system.CasualtyInfo.domain.vo.CasualtyVO">
+        SELECT t_casualty.*,
+        FROM t_casualty
+        where t_casualty.id = #{ID}
+    </select>
+    
+    
+    <select id="getCasualtyByIds" resultType="net.lab1024.sa.admin.module.system.CasualtyInfo.domain.entity.CasualtyEntity">
+        SELECT * FROM t_casualty
+        where id IN
+        <foreach collection="IDs" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+        ORDER BY create_time DESC
+    </select>
+    
+    <select id="getCasualtyId" resultType="java.lang.Long">
+        SELECT id
+        FROM t_casualty
+    </select>
+    
+    <select id="selectCasualtyByDeleted"
+            resultType="net.lab1024.sa.admin.module.system.CasualtyInfo.domain.vo.CasualtyVO">
+        SELECT
+        t_casualty.*,
+        FROM t_casualty
+        <where>
+            <if test="deletedFlag != null">
+                AND t_casualty.deleted_flag = #{deletedFlag}
+            </if>
+        </where>
+    </select>
+
+    
+ </mapper>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.lab1024.sa.admin.module.system.earthquake.dao.EarthquakeDao">
+
+    <select id="queryEarthquake" resultType="net.lab1024.sa.admin.module.system.earthquake.domain.vo.EarthquakeVO">
+        SELECT
+        t_earthquake.*
+        FROM t_earthquake
+        <where>
+            <if test="queryForm.keyword != null and queryForm.keyword != ''">
+                AND (
+                INSTR(t_earthquake.code,#{queryForm.keyword})
+                OR INSTR(t_earthquake.source,#{queryForm.keyword})
+                OR INSTR(t_earthquake.disaster,#{queryForm.keyword})
+                )
+            </if>
+            <if test="queryForm.deletedFlag != null">
+                AND t_earthquake.deleted_flag = #{queryForm.deletedFlag}
+            </if>
+        </where>
+    </select>
+
+    <select id="getByCode" resultType="net.lab1024.sa.admin.module.system.earthquake.domain.entity.EarthquakeEntity">
+        SELECT *
+        FROM t_earthquake
+        <where>
+            code = #{code}
+        </where>
+    </select>
+
+    <select id="getByGeoCode" resultType="java.lang.String">
+        SELECT CONCAT(province,city,county,town,village) as geoPosition
+        FROM region_code
+        <where>
+            id = #{geoCode}
+        </where>
+    </select>
+
+
+    <select id="listAll" resultType="net.lab1024.sa.admin.module.system.earthquake.domain.vo.EarthquakeVO">
+        SELECT *
+        FROM t_earthquake
+        ORDER BY create_time DESC
+    </select>
+
+    <select id="getEarthquakeCode" resultType="java.lang.String">
+        SELECT code
+        FROM t_earthquake
+    </select>
+
+
+    <select id="getEarthquakeByCodes" resultType="net.lab1024.sa.admin.module.system.earthquake.domain.vo.EarthquakeVO">
+        SELECT * FROM t_earthquake
+        where code IN
+        <foreach collection="codes" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+        ORDER BY create_time DESC
+    </select>
+
+
+    <select id="getEarthquakeByCode" resultType="net.lab1024.sa.admin.module.system.earthquake.domain.vo.EarthquakeVO">
+        SELECT t_earthquake.*
+        FROM t_earthquake
+        where t_earthquake.code = #{code}
+    </select>
+
+    <select id="selectEarthquakeByDeleted"
+            resultType="net.lab1024.sa.admin.module.system.earthquake.domain.vo.EarthquakeVO">
+        SELECT
+        t_earthquake.*
+        FROM t_earthquake
+        <where>
+            <if test="deletedFlag != null">
+                AND t_earthquake.deleted_flag = #{deletedFlag}
+            </if>
+        </where>
+    </select>
+
+
+</mapper>

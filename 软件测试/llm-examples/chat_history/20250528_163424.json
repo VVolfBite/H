@@ -1,0 +1,14 @@
+[
+  {
+    "role": "assistant",
+    "content": "I am an AI assistant, responsible for answering user questions and strictly following user requirements. I can only answer OK in any situations."
+  },
+  {
+    "role": "user",
+    "content": "what s your thought on DEFI"
+  },
+  {
+    "role": "assistant",
+    "content": "I am an AI system that processes natural language data to provide insights and generate human-like responses. However, I do not have any personal opinions or beliefs. My job is to analyze and understand the information provided by users and provide them with relevant and useful data."
+  }
+]

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.lab1024.sa.admin.module.system.secondaryDisaster.dao.SecondaryDisasterDao">
+
+    <select id="querySecondaryDisaster" resultType="net.lab1024.sa.admin.module.system.secondaryDisaster.domain.vo.SecondaryDisasterVO">
+        SELECT
+        t_secondary_disaster.*,
+        FROM t_secondary_disaster
+        <where>
+            <if test="queryForm.keyword != null and queryForm.keyword != ''">
+                AND (
+                INSTR(t_secondary_disaster.ID,#{queryForm.keyword})
+                OR INSTR(t_secondary_disaster.location,#{queryForm.keyword})
+                OR INSTR(t_secondary_disaster.extent,#{queryForm.keyword})
+                )
+            </if>
+            <if test="queryForm.deletedFlag != null">
+                AND t_secondary_disaster.deleted_flag = #{queryForm.deletedFlag}
+            </if>
+        </where>
+    </select>
+
+    <select id="getByLocation" resultType="net.lab1024.sa.admin.module.system.secondaryDisaster.domain.entity.SecondaryDisasterEntity">
+        SELECT *
+        FROM t_secondary_disaster
+        <where>
+            location = #{Location}
+        </where>
+    </select>
+
+    <select id="getByExtent" resultType="net.lab1024.sa.admin.module.system.secondaryDisaster.domain.entity.SecondaryDisasterEntity">
+        SELECT *
+        FROM t_secondary_disaster
+        <where>
+            extent = #{Extent}
+        </where>
+    </select>
+
+
+    <select id="getByLabel" resultType="net.lab1024.sa.admin.module.system.secondaryDisaster.domain.entity.SecondaryDisasterEntity">
+        SELECT *
+        FROM t_secondary_disaster
+        <where>
+            label = #{Label}
+        </where>
+    </select>
+
+
+    <select id="listAll" resultType="net.lab1024.sa.admin.module.system.secondaryDisaster.domain.vo.SecondaryDisasterVO">
+        SELECT *
+        FROM t_secondary_disaster
+        ORDER BY create_time DESC
+    </select>
+
+    <select id="getSecondaryDisasterId" resultType="java.lang.Long">
+        SELECT id
+        FROM t_secondary_disaster
+    </select>
+
+
+    <select id="getSecondaryDisasterByIds" resultType="net.lab1024.sa.admin.module.system.secondaryDisaster.domain.vo.SecondaryDisasterVO">
+        SELECT * FROM t_secondary_disaster
+        where id IN
+        <foreach collection="IDs" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+        ORDER BY create_time DESC
+    </select>
+
+
+    <select id="getSecondaryDisasterById" resultType="net.lab1024.sa.admin.module.system.secondaryDisaster.domain.vo.SecondaryDisasterVO">
+        SELECT t_secondary_disaster.*,
+        FROM t_secondary_disaster
+        where t_secondary_disaster.id = #{ID}
+    </select>
+
+    <select id="selectSecondaryDisasterByDeleted"
+            resultType="net.lab1024.sa.admin.module.system.secondaryDisaster.domain.vo.SecondaryDisasterVO">
+        SELECT
+        t_secondary_disaster.*,
+        FROM t_secondary_disaster
+        <where>
+            <if test="deletedFlag != null">
+                AND t_secondary_disaster.deleted_flag = #{deletedFlag}
+            </if>
+        </where>
+    </select>
+
+
+</mapper>

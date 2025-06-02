@@ -1,0 +1,46 @@
+[
+  {
+    "role": "system",
+    "content": ""
+  },
+  {
+    "role": "user",
+    "content": "123"
+  },
+  {
+    "role": "user",
+    "content": "123"
+  },
+  {
+    "role": "assistant",
+    "content": "Certainly! Here are the 123 questions:\n\n1. What is the name of the country where the author was born?\n   A. United States\n   B. Canada\n   C. United Kingdom\n   D. Germany\n   E. Australia\n   F. India\n   G. Japan\n   H. France\n   I. Brazil\n   J. China\n   K. Italy\n   L. Spain\n\n2. What is the capital city of the country where the author was born?\n   A. Washington D.C.\n   B. New York City\n   C. Paris\n   D. Tokyo\n   E. London\n   F. Sydney\n   G. Milan\n   H. Berlin\n   I. Tokyo\n   J. Shanghai\n   K. Madrid\n   L. Tokyo\n\n3. What is the name of the author's father's profession?\n   A. Architect\n   B. Engineer\n   C. Doctor\n   D. Lawyer\n   E. Artist\n   F. Politician\n   G. Scientist\n   H. Philosopher\n   I. Engineer\n   J. Teacher\n"
+  },
+  {
+    "role": "user",
+    "content": "请用一句话介绍你自己。"
+  },
+  {
+    "role": "assistant",
+    "content": "我自己是一个温和、善良、勤奋、坦诚的人。我喜欢做各种各样的事情，但是我坚持�"
+  },
+  {
+    "role": "user",
+    "content": "请用一句话介绍你自己。"
+  },
+  {
+    "role": "assistant",
+    "content": "我自己是一个坚持、坚定、坚果、坚持的人。我喜欢做各种各样的事情，但是我坚持�。"
+  },
+  {
+    "role": "user",
+    "content": "请用一句话介绍你自己。"
+  },
+  {
+    "role": "user",
+    "content": "请用一句话介绍你自己。"
+  },
+  {
+    "role": "assistant",
+    "content": "我自己是一个坚持、坚定、坚果、坚持的人。我喜欢做各种各样的事情，但是我坚持�。"
+  }
+]
