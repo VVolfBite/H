@@ -237,4 +237,5 @@ if prompt := st.chat_input("请输入你的问题..."):
             else:
                 chat_id = datetime.now().strftime("%Y%m%d_%H%M%S")
                 st.session_state["current_chat"] = chat_id
-                save_chat_history(chat_id, st.session_state["messages"]) 
+                save_chat_history(chat_id, st.session_state["messages"])
+
