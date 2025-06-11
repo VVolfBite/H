@@ -76,9 +76,9 @@ class SingleLSTM(nn.Module):
 ![预测结果对比](prediction_comparison.png)
 
 从预测结果对比图可以看出：
-1. 多LSTM模型能够更好地捕捉价格趋势的变化
-2. 在价格波动较大的区域，多LSTM模型表现出更好的稳定性
-3. 预测曲线与真实值的拟合度更高，特别是在关键转折点处
+1. 多LSTM模型能够更保守地捕捉价格趋势的变化
+2. 在价格波动较大的区域，多LSTM模型表现出更好的稳定性，也因此造成预测更加保守
+3. 预测曲线与真实值的拟合趋势更高，特别是在关键转折点处
 
 ### 4.3 误差分布分析
 
@@ -174,4 +174,4 @@ def get_predictions(model, test_loader):
             predictions.append(pred.cpu().numpy())
             true_values.append(yb.numpy())
     return np.concatenate(predictions), np.concatenate(true_values)
-``` 
+```
