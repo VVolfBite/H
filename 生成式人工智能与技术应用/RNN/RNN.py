@@ -13,7 +13,7 @@ print("Starting data loading...")
 # 1. 读取与处理数据
 # =======================
 try:
-    df = pd.read_csv("stock_dataset_2.csv")
+    df = pd.read_csv("./data/stock_dataset_2.csv")
     print(f"Successfully loaded data with shape: {df.shape}")
     print("\nFirst few rows of data:")
     print(df.head())
@@ -127,8 +127,7 @@ model = LstmRNN(
 criterion = RelativeErrorLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=0.001, weight_decay=1e-5)
 scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
-    optimizer, mode='min', factor=0.5, patience=3, verbose=True
-)
+    optimizer, mode='min', factor=0.5, patience=3)
 
 # 打印模型参数
 print("\nModel parameters:")
